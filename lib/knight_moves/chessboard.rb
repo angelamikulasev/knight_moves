@@ -4,6 +4,18 @@ module KnightMoves
   module Chessboard
     extend self
 
+    def offsets
+      [
+        [ 2, -1],
+        [ 2,  1],
+        [-2,  1],
+        [-2, -1],
+        [ 1,  2],
+        [ 1, -2],
+        [-1,  2],
+        [-1, -2]
+      ]
+    end
     def valid_square?(square)
       columns.include?(square[0]) && rows.include?(square[1])
     end
