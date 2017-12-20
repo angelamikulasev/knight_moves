@@ -44,5 +44,9 @@ module KnightMoves
         move.join("-")
       end
     end
+
+    def sort_paths_alphabetically(knight_moves)
+      knight_moves.sort_by{ |letter| letter }
+    end
   end
 end
