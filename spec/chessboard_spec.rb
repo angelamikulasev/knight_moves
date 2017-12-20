@@ -55,4 +55,24 @@ describe ::KnightMoves::Chessboard do
       end
     end
   end
+
+  describe "#dasherise_moves" do
+    context "when one paths exist" do
+      it "dasherizes moves" do
+        knight_moves = [["a1", "b3", "a5", "c6", "d4"]]
+
+        expect(described_class.dasherise_moves(knight_moves)).to eq(["a1-b3-a5-c6-d4"])
+      end
+    end
+
+    context "when multiple paths exist" do
+      it "dasherizes moves" do
+        knight_moves = [["a1", "b3", "a5", "c6", "d4"], ["a1", "b3", "a5", "c6", "d4"]]
+
+        expect(described_class.dasherise_moves(knight_moves)).to eq(
+          ["a1-b3-a5-c6-d4", "a1-b3-a5-c6-d4"]
+        )
+      end
+    end
+  end
 end
