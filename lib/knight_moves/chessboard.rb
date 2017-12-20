@@ -10,7 +10,16 @@ module KnightMoves
       return nil if visited_squares.length >= 6
       return "invalid square: #{current_square}" if !valid_square?(current_square)
 
-      "success!"
+      visited_squares << current_square
+
+      puts "calc_next_moves #{calculate_next_moves(current_square)}"
+      puts "#{current_square} - #{visited_squares}"
+
+      calculate_next_moves(current_square).each do |square|
+        calculate_moves(square, destination_square, visited_squares)
+      end
+
+      visited_squares
     end
 
     def calculate_next_moves(square)
@@ -59,3 +68,5 @@ module KnightMoves
     end
   end
 end
+
+::KnightMoves::Chessboard.calculate_moves("a1", "d4", [])
