@@ -23,9 +23,13 @@ describe ::KnightMoves::Chessboard do
       end
     end
 
-    context "when data is incorrect" do
-      it "returns success" do
-        expect(described_class.calculate_moves("a1", "d4", [])).to eq("success!")
+    context "when data is correct" do
+      it "returns no error message" do
+        expect(described_class.calculate_moves("a1", "c2", [])).to_not eq("a1 and/or c2 are invalid.")
+      end
+
+      it "lists each square the knight travels" do
+        expect(described_class.calculate_moves("a1", "d4", [])).to eq(sorted_knight_moves)
       end
     end
   end
