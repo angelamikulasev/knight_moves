@@ -39,7 +39,7 @@ module KnightMoves
       %w[a b c d e f g h]
     end
 
-    def dasherise_moves(knight_moves)
+    def dasherize_moves(knight_moves)
       knight_moves.map do |move|
         move.join("-")
       end
