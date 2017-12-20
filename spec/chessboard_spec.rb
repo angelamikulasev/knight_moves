@@ -58,56 +58,27 @@ describe ::KnightMoves::Chessboard do
 
   describe "#dasherize_moves" do
     it "dasherizes the kinghts path from start_square to destination_square" do
-      knight_moves = [
-        ["a1", "b3", "a5", "c6", "d4"],
-        ["a1", "b3", "c1", "e2", "d4"]
-      ]
-
-      expect(described_class.dasherize_moves(knight_moves)).to eq(
-        ["a1-b3-a5-c6-d4", "a1-b3-c1-e2-d4"]
+      expect(described_class.dasherize_moves(sorted_knight_moves)).to eq(
+        [
+          "a1-b3-a5-c6-d4",
+          "a1-b3-c1-e2-d4",
+          "a1-b3-c5-e6-d4",
+          "a1-b3-d2-f3-d4",
+          "a1-b3-d2-f3-d4",
+          "a1-b3-d4",
+          "a1-c2-a3-b5-d4",
+          "a1-c2-b4-c6-d4",
+          "a1-c2-d4",
+          "a1-c2-e1-f3-d4",
+          "a1-c2-e3-f5-d4"
+        ]
       )
     end
   end
 
   describe "#sort_paths_alphabetically" do
     it "sorts an array of paths alphabetically" do
-      unsorted_knight_moves = [
-        ["a1", "c2", "b4", "c6", "d4"],
-        ["a1", "b3", "a5", "c6", "d4"],
-        ["a1", "c2", "e3", "f5", "d4"],
-        ["a1", "b3", "c1", "e2", "d4"],
-        ["a1", "b3", "c5", "e6", "d4"],
-        ["a1", "b3", "d2", "f3", "d4"],
-        ["a1", "c2", "e1", "f3", "d4"],
-        ["a1", "b3", "d2", "f3", "d4"],
-        ["a1", "b3", "d4"],
-        ["a1", "c2", "a3", "b5", "d4"],
-        ["a1", "c2", "d4"]
-      ]
-
-      expect(described_class.sort_paths_alphabetically(unsorted_knight_moves)).to eq(
-        [
-          ["a1", "b3", "a5", "c6", "d4"],
-          ["a1", "b3", "c1", "e2", "d4"],
-          ["a1", "b3", "c5", "e6", "d4"],
-          ["a1", "b3", "d2", "f3", "d4"],
-          ["a1", "b3", "d2", "f3", "d4"],
-          ["a1", "b3", "d4"],
-          ["a1", "c2", "a3", "b5", "d4"],
-          ["a1", "c2", "b4", "c6", "d4"],
-          ["a1", "c2", "d4"],
-          ["a1", "c2", "e1", "f3", "d4"],
-          ["a1", "c2", "e3", "f5", "d4"]
-        ]
-      )
+      expect(described_class.sort_paths_alphabetically(unsorted_knight_moves)).to eq(sorted_knight_moves)
     end
   end
 end
-
-
-
-
-
-
-
-
