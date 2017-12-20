@@ -16,6 +16,11 @@ module KnightMoves
         [-1, -2]
       ]
     end
+
+    def offset_square(square, offset)
+      ("#{(square[0].ord + offset[0]).chr}#{(square[1].ord + offset[1]).chr}")
+    end
+
     def valid_square?(square)
       columns.include?(square[0]) && rows.include?(square[1])
     end
