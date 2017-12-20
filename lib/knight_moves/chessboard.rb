@@ -4,6 +4,15 @@ module KnightMoves
   module Chessboard
     extend self
 
+    def calculate_moves(current_square, destination_square, visited_squares)
+      # return visited_squares if visited_squares.length > 5
+      return visited_squares if current_square == destination_square
+      return nil if visited_squares.length >= 6
+      return "invalid square: #{current_square}" if !valid_square?(current_square)
+
+      "success!"
+    end
+
     def calculate_next_moves(square)
       offsets
         .map { |offset| offset_square(square, offset) }
