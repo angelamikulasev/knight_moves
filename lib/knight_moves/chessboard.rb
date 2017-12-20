@@ -4,6 +4,12 @@ module KnightMoves
   module Chessboard
     extend self
 
+    def calculate_next_moves(square)
+      offsets
+        .map { |offset| offset_square(square, offset) }
+        .select { |square| valid_square?(square) }
+    end
+
     def offsets
       [
         [ 2, -1],

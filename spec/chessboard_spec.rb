@@ -2,6 +2,28 @@ require 'pry'
 require 'spec_helper'
 
 describe ::KnightMoves::Chessboard do
+  describe "#calculate_next_moves" do
+    context "when current square is on the board edge" do
+      it "lists all valid potential moves" do
+        expect(described_class.calculate_next_moves("a1")).to eq(["c2", "b3"])
+      end
+
+      it "excludes all invalid moves" do
+        expect(described_class.calculate_next_moves("a1")).to_not eq(
+          ["c0", "c2", "_2", "_0", "b3", "b/", "`3", "`/"]
+        )
+      end
+    end
+
+    context "when current square is not on the board edge" do
+      it "lists all valid potential moves" do
+        expect(described_class.calculate_next_moves("d4")).to eq(
+          ["f3", "f5", "b5", "b3", "e6", "e2", "c6", "c2"]
+        )
+      end
+    end
+  end
+
   describe "#offset_square" do
     it "calculates one offset based on the position of the current square" do
       expect(described_class.offset_square("b4", [-1,  2])).to eq("a6")
