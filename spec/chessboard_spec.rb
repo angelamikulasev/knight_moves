@@ -2,6 +2,34 @@ require 'pry'
 require 'spec_helper'
 
 describe ::KnightMoves::Chessboard do
+  describe "#calculate_moves" do
+    context "when current_square is equal to destination_square" do
+      it "returns visited_squares" do
+        expect(
+          described_class.calculate_moves("d4", "d4", ["a1", "c2", "b4", "c6", "d4"])
+        ).to eq(["a1", "c2", "b4", "c6", "d4"])
+      end
+    end
+
+    context "when there is no path within four squares" do
+      it "returns an empty array" do
+        expect(described_class.calculate_moves("a1", "h5", ["a1", "b3", "c5", "e6", "f4", "h5"])).to eq(nil)
+      end
+    end
+
+    context "when data is incorrect" do
+      it "returns an error message" do
+        expect(described_class.calculate_moves("z1", "a2", [])).to eq("invalid square: z1")
+      end
+    end
+
+    context "when data is incorrect" do
+      it "returns success" do
+        expect(described_class.calculate_moves("a1", "d4", [])).to eq("success!")
+      end
+    end
+  end
+
   describe "#calculate_next_moves" do
     context "when current square is on the board edge" do
       it "lists all valid potential moves" do
